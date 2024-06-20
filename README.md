@@ -20,6 +20,7 @@
 make create-project
 ```
 ### 必要なセッティング
+#### Rest API
 ``` setting.py
 ALLOWED_HOSTS = ['gunicorn-django']
 # ------------
@@ -29,6 +30,14 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware', # add
     # more source
 ]
+```
+
+#### grashql
+``` setting.py
+INSTALLED_APPS = [
+    ...
+    "django.contrib.staticfiles",  # Required for GraphiQL
+    "graphene_django",
 ```
 
 ```vite.config

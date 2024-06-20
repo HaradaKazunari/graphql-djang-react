@@ -32,6 +32,8 @@ create-project:
 init:
 	@make build
 	@make up
+	@make migrate
+	@make createsuperuser
 
 remake:
 	@make destroy
@@ -62,7 +64,7 @@ log-app-front:
 log-app-front-watch:
 	docker compose logs --follow app-front
 log-app-back:
-	docker compose logs app-back
+	docker compose -f compose.yaml -f compose.dev.yaml logs app-back --follow
 log-app-back-watch:
 	docker compose logs --follow app-back
 app-back:
