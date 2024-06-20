@@ -1,0 +1,11 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: MA tool
+  license:
+    name: MIT
+servers:
+  - url: http://localhost:8010
+    description: Development api mock server
+  - url: http://localhost
+    description: Development Django server

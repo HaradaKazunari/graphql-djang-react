@@ -1,0 +1,8 @@
+services:
+  app-front:
+    image: node:21-alpine3.18
+    working_dir: /usr/src/app
+    volumes:
+      - ./apps/frontend:/usr/src/app
+    ports:
+      - "3000:5173"

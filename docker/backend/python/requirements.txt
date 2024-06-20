@@ -1,0 +1,14 @@
+Django==4.2.9
+django-cors-headers==4.3.1
+graphene-django==3.2.2
+gunicorn==21.2.0
+mysqlclient==2.1.1
+python-dotenv==1.0.0
+whitenoise==6.6.0
+python-decouple==3.8
+dj-database-url==2.1.0
+django-environ==0.11.2
+black==24.2.0
+flake8==7.0.0
+openpyxl==3.1.2
+pillow==10.3.0

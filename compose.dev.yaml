@@ -1,0 +1,44 @@
+volumes:
+  gunicorn:
+    driver: local
+
+services:
+  app-back:
+    env_file: .env.dev
+    build: ./docker/backend/python/
+    volumes:
+      - ./apps/backend:/app
+      - gunicorn:/var/run/gunicorn
+    environment:
+      - chokidar_usepolling=true
+      - django_settings_module=config.local_settings
+    depends_on:
+      - db
+
+  web-back:
+    image: nginx:1.25.3
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/backend/nginx/nginx.def.conf:/etc/nginx/conf.d/default.conf
+      - ./apps/frontend/dist:/var/www/html
+      - gunicorn:/var/run/gunicorn
+    depends_on:
+      - app-back
+
+  app-front:
+    env_file: .env.dev
+    command: sh -c "npm install && npm run dev"
+
+  db:
+    build: ./docker/mysql/
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-django}
+      MYSQL_USER: ${MYSQL_USER:-admin}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-password}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD:-password}
+      tz: "asia/tokyo"
+
