@@ -5,8 +5,8 @@ build:
 	docker compose build
 
 django-install:
-	docker compose run --rm app-back sh -c "django-admin startproject config ."
-	docker compose run --rm app-back sh -c "python manage.py startapp app"
+	docker compose -f compose.yaml -f compose.dev.yaml run --rm app-back sh -c "django-admin startproject config ."
+	docker compose -f compose.yaml -f compose.dev.yaml run --rm app-back sh -c "python manage.py startapp app"
 
 react-install:
 	docker compose run --rm app-front sh -c 'npm create vite@latest . -- --template react-ts'
