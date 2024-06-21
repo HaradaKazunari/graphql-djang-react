@@ -1,4 +1,4 @@
-#!/Users/haradakazunari/Develop/github.com/rk-three-dots/learn-graphql/.venv/bin/python
+#!/Users/haradakazunari/Develop/github.com/HaradaKazunari/graphql-djang-react/.venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
