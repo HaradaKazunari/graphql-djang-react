@@ -1,5 +1,7 @@
+import graphene
 from graphene import relay
 from graphene_django import DjangoObjectType
+from graphql_relay import from_global_id
 from graphene_django.filter import DjangoFilterConnectionField
 
 from .models import Category, Ingredient
@@ -39,3 +41,22 @@ class Query:
 
     def resolve_ingredients(root, info, **kwargs):
         return Ingredient.objects.filter(name="Eggs")
+
+
+class Mutation(relay.ClientIDMutation):
+    class Input:
+        id = graphene.ID()
+        name = graphene.String(required=True)
+        note = graphene.String()
+        category = graphene.Int()
+
+    ingredient = graphene.Field(IngredientNode)
+
+    @classmethod
+    def mutate_and_get_payload(cls, root, info, **input):
+        ingredient = Ingredient.objects.get(pk=from_global_id(id)[1])
+        # ingredient.name = input.name
+        # ingredient.note = input.note
+        # ingredient.category = input.category
+        # ingredient.save()
+        return Mutation(ingredient=ingredient)
