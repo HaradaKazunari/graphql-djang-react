@@ -1,12 +1,11 @@
-import { LoginForm } from "@/features/auth";
 import { AuthLayout } from "@/components/Layout";
-import { redirect } from "@/utils/redirect";
 import {
   Card,
   CardHeader,
   CardTitle,
   CardContent,
 } from "@/components/Elements";
+import { CategoryList } from "@/features/graph/components";
 
 export const Login = () => {
   return (
@@ -16,7 +15,7 @@ export const Login = () => {
           <CardTitle>ログイン</CardTitle>
         </CardHeader>
         <CardContent>
-          <LoginForm onSuccess={() => redirect("/app")} />
+          <CategoryList />
         </CardContent>
       </Card>
     </AuthLayout>

@@ -7,7 +7,7 @@ from config.schema import schema
 urlpatterns = [
     path("admin/", admin.site.urls),
     path(
-        "graphql/",
+        "api/graphql/",
         GraphQLView.as_view(
             graphiql=True,
             schema=schema,
